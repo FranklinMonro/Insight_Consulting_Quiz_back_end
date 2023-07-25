@@ -1,0 +1,27 @@
+{
+  "name": "insight_consulting_quiz_back_end",
+  "version": "1.0.0",
+  "description": "### OVERVIEW The company is having a quiz night in a couple of days and they have decided to create the quiz as an online web application. Develop a web application where the player can select a quiz, and then answer the questions, then show the player their score at the end of the quiz. You have been supplied with a JSON file which already contains two quizzes and a few questions with their answers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^5.0.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
