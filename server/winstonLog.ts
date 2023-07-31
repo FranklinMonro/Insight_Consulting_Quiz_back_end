@@ -72,11 +72,11 @@ const serverLogger = createLogger({
   },
 });
 
-const sentenceLogger = createLogger({
+const quizLogger = createLogger({
   transports: [
     new transports.File({
       dirname: 'logs',
-      filename: 'sentenceLogger.log',
+      filename: 'quizLogger.log',
     }),
   ],
   format: format.combine(
@@ -113,6 +113,6 @@ export {
   configLogger,
   errorHandlerLogger,
   serverLogger,
-  sentenceLogger,
+  quizLogger,
   wordsApiLogger,
 };
