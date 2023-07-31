@@ -5,6 +5,7 @@ import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 import createErrorMessage from './createErrorMessage';
 
 import QuizRouter from '../routes/quiz/quizRoutes';
+import AnswersRouter from '../routes/answers/answersRoutes';
 
 class App {
   public httpServer = express();
@@ -35,6 +36,8 @@ class App {
     // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
     this.httpServer.use('/api/quizroutes', QuizRouter);
+
+    this.httpServer.use('/api/answerroutes', AnswersRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);
