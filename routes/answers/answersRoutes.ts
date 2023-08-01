@@ -1,15 +1,13 @@
 import express from 'express';
-import { getQuestions, getQuiz, getAnswer } from './quizControllers';
+import { getAnswer, postAnswer } from './answersControllers';
 
 class AnswersRouter {
   public router = express.Router();
 
   constructor() {
-    this.router.get('/quiz', getQuiz);
+    this.router.post('/', postAnswer);
 
-    this.router.get('/questions/:quizid/:questionid', getQuestions);
-
-    this.router.get('/questionanswer/:quizid/:questionid', getAnswer);
+    this.router.get('/', getAnswer);
   }
 }
 

@@ -90,11 +90,11 @@ const quizLogger = createLogger({
   },
 });
 
-const wordsApiLogger = createLogger({
+const answerLogger = createLogger({
   transports: [
     new transports.File({
       dirname: 'logs',
-      filename: 'wordsApiLogger.log',
+      filename: 'answerLogger.log',
     }),
   ],
   format: format.combine(
@@ -114,5 +114,5 @@ export {
   errorHandlerLogger,
   serverLogger,
   quizLogger,
-  wordsApiLogger,
+  answerLogger,
 };
