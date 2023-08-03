@@ -7,6 +7,8 @@ class QuizRouter {
   constructor() {
     this.router.get('/quiz', getQuiz);
 
+    this.router.get('/quizcount/:quizid/', getQuiz);
+
     this.router.get('/questions/:quizid/:questionid', getQuestions);
 
     this.router.get('/questionanswer/:quizid/:questionid', getAnswer);

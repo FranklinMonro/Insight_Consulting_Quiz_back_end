@@ -4,11 +4,11 @@ import { getPlayersAnswers, postPlayersAnswers } from './answersUtils';
 
 const postAnswer = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const quesstion = await postPlayersAnswers(req.body);
-    if (quesstion instanceof Error) {
-      throw new Error('Error in get word types');
+    const answer = await postPlayersAnswers(req.body);
+    if (answer instanceof Error) {
+      throw new Error('Error in post player answer');
     }
-    res.status(200).send(quesstion);
+    res.status(200).send(answer);
   } catch (err) {
     log.log('error', `URL ${req.baseUrl}, error: ${err}`);
     next(err);

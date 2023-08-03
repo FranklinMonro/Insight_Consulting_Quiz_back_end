@@ -24,6 +24,27 @@ const getQuizNames = async (): Promise<quizAttributes[] | Error> => {
   }
 };
 
+const getQuizQuestionsCount = async (
+  quizid: number,
+): Promise<number | Error> => {
+  try {
+    const count = await quizQuestion.count({
+      where: {
+        quiz_id: quizid,
+      },
+    }).catch((err: Error) => {
+      log.log('error', `Error in getting wordTypes, error: ${err}`);
+      throw new Error('Error in getting wordTypes');
+    });
+
+    return count!;
+  } catch (err: any) {
+    const { fileName, line } = createErrorMessage(err!);
+    log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
+    return err as Error;
+  }
+};
+
 const getQuizQuestions = async (
   quizid: number,
   questionid: number,
@@ -74,6 +95,7 @@ const getQuestionAnswer = async (
 
 export {
   getQuizNames,
+  getQuizQuestionsCount,
   getQuizQuestions,
   getQuestionAnswer,
 };

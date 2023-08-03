@@ -1,11 +1,27 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { quizLogger as log } from '../../server/winstonLog';
-import { getQuestionAnswer, getQuizNames, getQuizQuestions } from './quizUtils';
+import {
+  getQuestionAnswer, getQuizNames, getQuizQuestions, getQuizQuestionsCount,
+} from './quizUtils';
 
 const getQuiz = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const quiz = await getQuizNames();
+    if (quiz instanceof Error) {
+      throw new Error('Error in get quiz');
+    }
+    res.status(200).send(quiz);
+  } catch (err) {
+    log.log('error', `URL ${req.baseUrl}, error: ${err}`);
+    next(err);
+  }
+};
+
+const getQuizCount = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { quizid } = req.params;
+    const quiz = await getQuizQuestionsCount(Number(quizid));
     if (quiz instanceof Error) {
       throw new Error('Error in get quiz');
     }
@@ -46,6 +62,7 @@ const getAnswer = async (req: Request, res: Response, next: NextFunction): Promi
 
 export {
   getQuiz,
+  getQuizCount,
   getQuestions,
   getAnswer,
 };
