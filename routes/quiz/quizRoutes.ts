@@ -1,5 +1,7 @@
 import express from 'express';
-import { getQuestions, getQuiz, getAnswer } from './quizControllers';
+import {
+  getQuestions, getQuiz, getAnswer, getQuizCount,
+} from './quizControllers';
 
 class QuizRouter {
   public router = express.Router();
@@ -7,7 +9,7 @@ class QuizRouter {
   constructor() {
     this.router.get('/quiz', getQuiz);
 
-    this.router.get('/quizcount/:quizid/', getQuiz);
+    this.router.get('/quizcount/:quizid', getQuizCount);
 
     this.router.get('/questions/:quizid/:questionid', getQuestions);
 

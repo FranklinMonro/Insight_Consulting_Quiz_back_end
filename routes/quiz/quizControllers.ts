@@ -21,11 +21,11 @@ const getQuiz = async (req: Request, res: Response, next: NextFunction): Promise
 const getQuizCount = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { quizid } = req.params;
-    const quiz = await getQuizQuestionsCount(Number(quizid));
-    if (quiz instanceof Error) {
+    const count = await getQuizQuestionsCount(Number(quizid));
+    if (count instanceof Error) {
       throw new Error('Error in get quiz');
     }
-    res.status(200).send(quiz);
+    res.status(200).send({ count });
   } catch (err) {
     log.log('error', `URL ${req.baseUrl}, error: ${err}`);
     next(err);

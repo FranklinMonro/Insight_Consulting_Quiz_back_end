@@ -17,12 +17,13 @@ const postAnswer = async (req: Request, res: Response, next: NextFunction): Prom
 
 const getAnswer = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { answerID } = req.params;
-    const quesstion = await getPlayersAnswers([answerID]);
-    if (quesstion instanceof Error) {
+    const { answersID } = req.params;
+    const id = answersID.split(',');
+    const allAnswers = await getPlayersAnswers(id);
+    if (allAnswers instanceof Error) {
       throw new Error('Error in get word types');
     }
-    res.status(200).send(quesstion);
+    res.status(200).send(allAnswers);
   } catch (err) {
     log.log('error', `URL ${req.baseUrl}, error: ${err}`);
     next(err);
