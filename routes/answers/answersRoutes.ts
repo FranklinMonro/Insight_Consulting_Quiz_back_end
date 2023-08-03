@@ -7,7 +7,7 @@ class AnswersRouter {
   constructor() {
     this.router.post('/', postAnswer);
 
-    this.router.get('/', getAnswer);
+    this.router.get('/:answersID', getAnswer);
   }
 }
 

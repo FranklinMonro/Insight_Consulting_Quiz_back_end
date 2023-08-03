@@ -24,12 +24,33 @@ const getQuizNames = async (): Promise<quizAttributes[] | Error> => {
   }
 };
 
+const getQuizQuestionsCount = async (
+  quizid: number,
+): Promise<number | Error> => {
+  try {
+    const count = await quizQuestion.count({
+      where: {
+        quiz_id: quizid,
+      },
+    }).catch((err: Error) => {
+      log.log('error', `Error in getting wordTypes, error: ${err}`);
+      throw new Error('Error in getting wordTypes');
+    });
+
+    return count!;
+  } catch (err: any) {
+    const { fileName, line } = createErrorMessage(err!);
+    log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
+    return err as Error;
+  }
+};
+
 const getQuizQuestions = async (
   quizid: number,
   questionid: number,
 ): Promise<quizQuestionAttributes | Error> => {
   try {
-    const wordTypes = await quizQuestion.findOne({
+    const questions = await quizQuestion.findOne({
       where: {
         quiz_id: quizid,
         question_id: questionid,
@@ -40,7 +61,7 @@ const getQuizQuestions = async (
       throw new Error('Error in getting wordTypes');
     });
 
-    return wordTypes!;
+    return questions!;
   } catch (err: any) {
     const { fileName, line } = createErrorMessage(err!);
     log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
@@ -51,9 +72,9 @@ const getQuizQuestions = async (
 const getQuestionAnswer = async (
   quizid: number,
   questionid: number,
-): Promise<questionsAnswerAttributes | Error> => {
+): Promise<questionsAnswerAttributes[] | Error> => {
   try {
-    const wordTypes = await questionsAnswer.findOne({
+    const answers = await questionsAnswer.findAll({
       where: {
         quiz_id: quizid,
         question_id: questionid,
@@ -64,7 +85,7 @@ const getQuestionAnswer = async (
       throw new Error('Error in getting wordTypes');
     });
 
-    return wordTypes!;
+    return answers!;
   } catch (err: any) {
     const { fileName, line } = createErrorMessage(err!);
     log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
@@ -74,6 +95,7 @@ const getQuestionAnswer = async (
 
 export {
   getQuizNames,
+  getQuizQuestionsCount,
   getQuizQuestions,
   getQuestionAnswer,
 };

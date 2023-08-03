@@ -15,7 +15,7 @@ const postPlayersAnswers = async (
 ): Promise<playerAnswerAttributes | Error> => {
   try {
     const { answer, is_correct } = answerPlayer;
-    const wordTypes = await playerAnswer.create({
+    const player = await playerAnswer.create({
       id: randomUUID(),
       answer,
       is_correct,
@@ -25,7 +25,7 @@ const postPlayersAnswers = async (
       throw new Error('Error in getting wordTypes');
     });
 
-    return wordTypes!;
+    return player!;
   } catch (err: any) {
     const { fileName, line } = createErrorMessage(err!);
     log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);

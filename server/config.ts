@@ -7,11 +7,11 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 
 const PG_CONNECTION = {
-  host: process.env.POSTGRES_HOST, // host of db container
+  host: 'db', // host of db container
   port: 5432, // 5432 is the default;
-  database: process.env.POSTGRES_DB, // database name
-  user: process.env.POSTGRES_USER, // database user name
-  password: process.env.POSTGRES_PWD, // database password
+  database: 'postgres', // database name
+  user: 'postgres', // database user name
+  password: 'postgres', // database password
 };
 
 const SEQUILIZE_NEW = new Sequelize({

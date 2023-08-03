@@ -35,9 +35,9 @@ class App {
 
     // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
-    this.httpServer.use('/api/quizroutes', QuizRouter);
+    this.httpServer.use('/quizapi/quizroutes', QuizRouter);
 
-    this.httpServer.use('/api/answerroutes', AnswersRouter);
+    this.httpServer.use('/quizapi/answerroutes', AnswersRouter);
 
     this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.log(`error in url ${req.originalUrl} - error: ${err}`);
